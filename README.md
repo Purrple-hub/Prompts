@@ -2,7 +2,7 @@
 
 > A stupidly large, surprisingly useful collection of battle-tested AI prompts. Organized, containerized, human.
 
-This started as my personal stash — every time I found a trick that actually worked (and wasn't just AI slop), I dropped it here. It grew. Then it grew stupidly. Now it's 60 prompts, 8 categories, and a Dockerfile because why not.
+This started as my personal stash — every time I found a trick that actually worked (and wasn't just AI slop), I dropped it here. It grew. Then it grew stupidly. Now it's 72 prompts, 8 categories + 12 advanced `<>`-delimited coding monsters, and a Dockerfile because why not.
 
 To be honest, some of these still surprise me. They work better than they should.
 
@@ -38,23 +38,24 @@ No build step. No npm. It's nginx serving markdown as text. The laziest correct 
 
 ```
 Prompts/
-├── coding/        # 12 — where bugs go to die
-├── research/      # 8  — skeptical, not summarizing
-├── writing/       # 8  — from humanizer to SEO
-├── security/      # 3  — Warden + friends
-├── meta/          # 5  — prompts that build prompts
-├── business/      # 8  — decisions, meetings, money
-├── creative/      # 7  — stories, memes, games
-└── productivity/  # 9  — learn, plan, live
+├── coding/           # 12 + 12 advanced — where bugs go to die
+│   └── advanced/     # 12 — <>-delimited, coding-specific, polished monsters
+├── research/         # 8  — skeptical, not summarizing
+├── writing/          # 8  — from humanizer to SEO
+├── security/         # 3  — Warden + friends
+├── meta/             # 5  — prompts that build prompts
+├── business/         # 8  — decisions, meetings, money
+├── creative/         # 7  — stories, memes, games
+└── productivity/     # 9  — learn, plan, live
 ```
 
-60 files total. Everything is `*.md` so you can grep it: `grep -r "STRIDE" Prompts/`.
+72 prompts total (+1 index). Everything is `*.md` so you can grep it: `grep -r "STRIDE" Prompts/` or `grep -r "<CODE>" Prompts/coding/advanced`.
 
 ---
 
 ## Full Catalog
 
-### 💻 Coding (12)
+### 💻 Coding (12 + 12 Advanced `<>`)
 
 | File | Purpose |
 |------|---------|
@@ -70,6 +71,23 @@ Prompts/
 | `coding/Commit-Message.md` | Conventional Commits that `git blame` loves |
 | `coding/Docs-Generator.md` | README + JSDoc + curl example from code |
 | `coding/Test-Generator.md` | One assert per test, edge-first |
+
+#### 🔥 Coding Advanced — `<>` delimiters, coding-specific voodoo (12)
+
+| File | Purpose | Weird Keywords |
+|------|---------|----------------|
+| `coding/advanced/Code-Review-Ultra.md` | Staff review that finds the 3am page, invariant → outlier → third axis | `<CODE>`, `<CONTEXT>`, `<STANDARDS>`, `<FOCUS>` |
+| `coding/advanced/Debug-Forensics.md` | Stack trace → first lie, grep all callers, minimal diff | `<ERROR_LOG>`, `<STACK_TRACE>`, `<CODE>`, `<REPRO_STEPS>`, `<ENV>`, `<EXPECTED>`, `<ACTUAL>` |
+| `coding/advanced/Perf-Optimizer.md` | Hot path → profile → ladder (YAGNI → stdlib → algo) | `<HOT_PATH>`, `<CODE>`, `<PROFILE_DATA>`, `<CONSTRAINTS>`, `<TARGET>` |
+| `coding/advanced/Concurrency-Reviewer.md` | Interleaving that breaks it + one-line fix | `<CODE>`, `<THREAD_MODEL>`, `<SHARED_STATE>`, `<LOAD>` |
+| `coding/advanced/Memory-Leak-Hunter.md` | Retainer chain → OOM, eviction patch | `<CODE>`, `<HEAP_DUMP>`, `<ALLOCATION_PATTERN>`, `<RUNTIME>` |
+| `coding/advanced/API-Break-Detector.md` | v1→v2 diff, semver, blast radius | `<OLD_SPEC>`, `<NEW_SPEC>`, `<CLIENTS>`, `<MIGRATION>` |
+| `coding/advanced/Type-System-Wizard.md` | Make compiler your QA, `any` → `unknown` | `<CODE>`, `<TYPE_ERROR>`, `<EXPECTED_TYPE>`, `<CONSTRAINTS>` |
+| `coding/advanced/Arch-Decision-Record.md` | ADR that kills 10 meetings, reversible by design | `<CONTEXT>`, `<OPTIONS>`, `<TRADEOFFS>`, `<CONSTRAINTS>` |
+| `coding/advanced/Build-Breaker-Fixer.md` | Red CI → first error, repro, pin | `<BUILD_LOG>`, `<CONFIG>`, `<DEPENDENCIES>`, `<ENV>` |
+| `coding/advanced/Prompt-Injection-Scanner.md` | Scan System prompt trust boundary ethically | `<PROMPT>`, `<INJECTION_PAYLOADS>`, `<TRUST_BOUNDARY>` |
+| `coding/advanced/SQL-Explain-Plan.md` | EXPLAIN ANALYZE → index + rewrite | `<SCHEMA>`, `<QUERY>`, `<EXPLAIN>`, `<SCALE>` |
+| `coding/advanced/Regex-ReDoS-Scanner.md` | ReDoS hunter, safe rewrite + bench | `<REGEX>`, `<FLAVOR>`, `<SAMPLES>`, `<CONTEXT>` |
 
 ### 🔬 Research (8)
 
@@ -160,7 +178,7 @@ Prompts/
 
 1. **Pick** — browse `Prompts/` or the table above.
 2. **Copy** — paste content into your AI (ChatGPT, Claude, Copilot, Opencode).
-3. **Fill brackets** — `[LIKE THIS]` are yours to replace.
+3. **Fill brackets** — `[LIKE THIS]` or `<LIKE_THIS>` are yours to replace. Advanced ones use `<>` so the model can't confuse data vs instructions.
 4. **Iterate** — tweak one constraint at a time. Smallest change that moves output.
 
 Tips from actually using them:
@@ -196,7 +214,7 @@ docker run --rm -p 3000:80 -v $PWD/Prompts:/usr/share/nginx/html/prompts:ro prom
 
 Got a prompt that survived real use? PR it.
 
-- Keep format: `# Name` → `> one-line hook` → `System` → `User` with `[BRACKETS]`.
+- Keep format: `# Name` → `> one-line hook` → `System` → `User` with `[BRACKETS]` or `<TAGS>` for advanced coding ones.
 - Include what it's *for* and what it *won't* do.
 - Human voice > corporate. If it sounds like a press release, rewrite.
 
