@@ -1,0 +1,23 @@
+services:
+  prompts:
+    build: .
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+  # Optional: live-reload viewer for local dev — same content, Python one-liner
+  # ponytail: delete this service if you just want nginx. It's here for `docker compose --profile dev up`
+  prompts-dev:
+    image: python:3.12-alpine
+    command: sh -c "cd /app && python -m http.server 8000"
+    volumes:
+      - ./Prompts:/app/prompts:ro
+      - ./README.md:/app/README.md:ro
+    ports:
+      - "8000:8000"
+    profiles: ["dev"]
