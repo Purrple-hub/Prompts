@@ -8,10 +8,18 @@ This repository is my personal stash of carefully crafted prompts. Every time I 
 
 | File | Purpose |
 |------|---------|
+| `Prompt-Architect.md` | **Meta prompt** – turns any vague idea into a bulletproof System + User prompt. Enforces the Smart Friend ruleset. |
 | `Coding-Agent.md` | A zero‑compromise code synthesis engine that outputs production‑ready, highly optimised code. |
 | `Opencode-Debugger.md` | A systematic debugger prompt that helps you reason through complex bugs and edge cases. |
-
-*(Add more rows as you expand your collection.)*
+| `Opencode-Tester.md` | Zero‑trust quality arbiter that fuzzes, stress‑tests, and exposes fragilities in any codebase. |
+| `Warden.md` | Forensic security auditor – STRIDE+A threat modeling and real‑world exploit simulation. |
+| `Research.md` | Skeptical research interrogator – finds the fragile assumption, the outlier, and the third axis. |
+| `Starter-Advanced.md` | DeepSeek‑optimized deep‑context conversationalist + rigorous research analyst. |
+| `Rewrite.md` | Brutally honest editor that makes AI slop sound human. |
+| `Web-Explanator.md` | Fetches and cleans web content into plain, actionable intelligence. |
+| `Humanizer-Pro.md` | Architect‑built rewrite engine – System/User split, no bullet points, preserves facts. |
+| `Insight-Extractor-Pro.md` | Web research + 4‑part interrogation – strips boilerplate, finds what’s missing, ends with the real question. |
+| `Code-Review-Pro.md` | Senior engineer code review – finds the breaking assumption and gives the laziest correct fix. |
 
 ## 🚀 How to Use
 
